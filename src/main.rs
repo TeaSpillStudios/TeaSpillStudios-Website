@@ -14,7 +14,7 @@ async fn main() {
             let css = fs::read_to_string("./styles.css").unwrap();
 
             let css_and_html = format!(
-                "<head>\n<style>\n{}</style>\n</head>\n\n<body>\n{}</body>",
+                "<!DOCTYPE html>\n\n<head>\n<style>\n{}</style>\n</head>\n\n<body>\n{}</body>",
                 css, html
             );
 
