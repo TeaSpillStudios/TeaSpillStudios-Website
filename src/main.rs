@@ -12,7 +12,12 @@ async fn main() {
             let markdown = fs::read_to_string("./index.md");
             let html = to_html(&markdown.unwrap());
 
-            Html(html)
+            let combined = format!(
+                "<head>\n<style>\n{}\n</style></head>",
+                fs::read_to_string("./styles.css").unwrap()
+            ) + &format!("<body>{}</body>", &html);
+
+            Html(combined)
         }),
     );
 
