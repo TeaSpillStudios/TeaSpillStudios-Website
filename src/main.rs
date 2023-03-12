@@ -9,9 +9,9 @@ async fn main() {
     let app = Router::new().route(
         "/",
         get(|| async {
-            let markdown = fs::read_to_string("./index.md").unwrap();
+            let markdown = fs::read_to_string("./resources/index.md").unwrap();
+            let css = fs::read_to_string("./resources/styles.css").unwrap();
             let html = to_html(&markdown);
-            let css = fs::read_to_string("./styles.css").unwrap();
 
             let css_and_html = format!(
                 "<!DOCTYPE html>\n\n<head>\n<style>\n{}</style>\n</head>\n\n<body>\n{}</body>",
