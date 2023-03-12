@@ -1,5 +1,6 @@
 use axum::{response::Html, routing::get, Router, Server};
-use std::fs;
+use markdown::file_to_html;
+use std::{fs, path::Path};
 use tower_http::{services::ServeDir, trace::TraceLayer};
 
 #[tokio::main]
@@ -15,5 +16,14 @@ async fn main() {
 }
 
 async fn handler() -> Html<String> {
-    Html(fs::read_to_string("static/index.html").expect("Failed to load HTML"))
+    let html = fs::read_to_string("static/index.html").expect("Failed to laod HTML");
+    let markdown = file_to_html(Path::new("static/index.md"))
+        .expect("Failed to convert Markdown to HTML")
+        .lines()
+        .map(|x| format!("    {x}\n"))
+        .collect::<String>();
+
+    let combination = format!("{html}\n{markdown}</body>");
+
+    Html(combination)
 }
