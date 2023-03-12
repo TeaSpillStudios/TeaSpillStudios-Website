@@ -9,15 +9,16 @@ async fn main() {
     let app = Router::new().route(
         "/",
         get(|| async {
-            let markdown = fs::read_to_string("./index.md");
-            let html = to_html(&markdown.unwrap());
+            let markdown = fs::read_to_string("./index.md").unwrap();
+            let html = to_html(&markdown);
+            let css = fs::read_to_string("./styles.css").unwrap();
 
-            let combined = format!(
-                "<head>\n<style>\n{}\n</style></head>",
-                fs::read_to_string("./styles.css").unwrap()
-            ) + &format!("<body>{}</body>", &html);
+            let css_and_html = format!(
+                "<head>\n<style>\n{}</style>\n</head>\n\n<body>\n{}</body>",
+                css, html
+            );
 
-            Html(combined)
+            Html(css_and_html)
         }),
     );
 
