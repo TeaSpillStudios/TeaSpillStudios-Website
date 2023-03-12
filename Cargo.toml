@@ -7,3 +7,4 @@ edition = "2021"
 axum = "0.6.10"
 markdown = "0.3.0"
 tokio = { version = "1.26.0", features = ["full"] }
+tower-http = { version = "0.4.0", features = ["fs", "trace"] }
