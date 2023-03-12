@@ -16,7 +16,7 @@ async fn main() {
 }
 
 async fn handler() -> Html<String> {
-    let html = fs::read_to_string("static/index.html").expect("Failed to laod HTML");
+    let html = fs::read_to_string("static/index.html").expect("Failed to load HTML");
     let markdown = file_to_html(Path::new("static/index.md"))
         .expect("Failed to convert Markdown to HTML")
         .lines()
