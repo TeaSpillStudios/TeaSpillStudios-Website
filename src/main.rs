@@ -23,7 +23,7 @@ async fn handler() -> Html<String> {
         .map(|x| format!("    {x}\n"))
         .collect::<String>();
 
-    let combination = format!("{html}\n{markdown}</body>");
+    let combination = format!("{html}\n<body>\n{markdown}</body>");
 
     Html(combination)
 }
