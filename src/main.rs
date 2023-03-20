@@ -17,13 +17,14 @@ async fn main() {
 
 async fn handler() -> Html<String> {
     let html = fs::read_to_string("static/index.html").expect("Failed to load HTML");
+    let footer_html = fs::read_to_string("static/footer.html").expect("Failed to load footer HTML");
     let markdown = file_to_html(Path::new("static/index.md"))
         .expect("Failed to convert Markdown to HTML")
         .lines()
         .map(|x| format!("    {x}\n"))
         .collect::<String>();
 
-    let combination = format!("{html}\n<body>\n{markdown}</body>");
+    let combination = format!("{html}\n<body>\n{markdown}{footer_html}</body>");
 
     Html(combination)
 }
