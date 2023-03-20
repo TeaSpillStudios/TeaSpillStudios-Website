@@ -21,7 +21,7 @@ h1 {
 }
 
 #footer {
-	text-align: right;
+	text-align: center;
 	font-size: 75%;
 }
 
@@ -35,4 +35,13 @@ body {
 #line_break {
 	visibility: hidden;
 	margin: 0.5em;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
 }
