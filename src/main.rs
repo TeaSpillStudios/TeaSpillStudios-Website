@@ -7,11 +7,7 @@ const DEV_MODE: bool = true;
 
 #[tokio::main]
 async fn main() {
-    let dir_path = if DEV_MODE {
-        "static/"
-    } else {
-        "/web-resources/static/"
-    };
+    let dir_path = if DEV_MODE { "static/" } else { "/static/" };
 
     let app = Router::new()
         .nest_service(dir_path, ServeDir::new("static"))
@@ -27,17 +23,17 @@ async fn handler() -> Html<String> {
     let html_path = if DEV_MODE {
         "static/index.html"
     } else {
-        "/web-resources/static/index.html"
+        "/static/index.html"
     };
     let footer_html_path = if DEV_MODE {
         "static/index.html"
     } else {
-        "/web-resources/static/index.html"
+        "/static/index.html"
     };
     let markdown_path = if DEV_MODE {
         "static/index.html"
     } else {
-        "/web-resources/static/index.html"
+        "/static/index.html"
     };
 
     let html = fs::read_to_string(html_path).expect("Failed to load HTML");
