@@ -7,8 +7,14 @@ const DEV_MODE: bool = true;
 
 #[tokio::main]
 async fn main() {
+    let dir_path = if DEV_MODE {
+        "static/"
+    } else {
+        "/web-resources/static/"
+    };
+
     let app = Router::new()
-        .nest_service("/static", ServeDir::new("static"))
+        .nest_service(dir_path, ServeDir::new("static"))
         .route("/", get(handler));
 
     Server::bind(&"0.0.0.0:3000".parse().unwrap())
