@@ -26,14 +26,14 @@ async fn handler() -> Html<String> {
         "/static/index.html"
     };
     let footer_html_path = if DEV_MODE {
-        "static/index.html"
+        "static/footer.html"
     } else {
-        "/static/index.html"
+        "/static/footer.html"
     };
     let markdown_path = if DEV_MODE {
-        "static/index.html"
+        "static/index.md"
     } else {
-        "/static/index.html"
+        "/static/index.md"
     };
 
     let html = fs::read_to_string(html_path).expect("Failed to load HTML");
